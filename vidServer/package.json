@@ -1,0 +1,9 @@
+{
+  "name": "vid-server",
+  "version": "0.0.0",
+  "description": "vidServer",
+  "main": "app.js",
+  "author": {
+    "name": "Admin"
+  }
+}
