@@ -110,7 +110,7 @@ http.createServer(function (req, res) {
             var splitdata = data.split(';');
 
             //res.writeHead(200, { 'Content-Type': 'text/html' });
-            res.setHeader("content-type", "some/type");
+            //res.setHeader("content-type", "some/type");
 
             for (var i = 0; i < splitdata.length; i++) {
                 //res.write(splitdata[i]);
@@ -132,21 +132,17 @@ http.createServer(function (req, res) {
         //  var songPath = songFilesPath + "\\" + songname + ".mp3";
         var songPath = path.join(__dirname, songname + ".mp3");     //notice here that the song has to be in the same directory as the server, otherwise it cant read it or something 
 
+        res.writeHead(200, {
+            'Content-Type': 'audio/mpeg',
+            'Content-Length': 343434343,
+            'Content-Disposition': 'attachment; filename=your_file_name'
+        });
 
-        res.setHeader("content-type", "some/type"); //the url will also contain the song name since the client has already obtained a song list. 
+        //res.setHeader("content-type", "some/type"); //the url will also contain the song name since the client has already obtained a song list. 
 
         fs.createReadStream(songPath).pipe(res);
 
         //        res.setHeader('Content-Disposition', 'filename="'+songname + '".mp3"');
-
-
-
-        res.end();
-
-
-
-
-
     } else {
         // next(); // not our concern, pass along to next middleware function
 
@@ -161,6 +157,6 @@ http.createServer(function (req, res) {
 
 
     }
-    res.end();
+    //res.end();
 
 }).listen(1337);
