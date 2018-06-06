@@ -12,6 +12,7 @@ var globalSQL = "hello!";
 var app = require('express');
 
 
+var gittest = "hello git    ";
 
 //  var exp = require('express');
 var cluster = require('cluster');
