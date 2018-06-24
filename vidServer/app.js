@@ -6,7 +6,8 @@ var fs = require('fs');
 var path = require('path');
 
 var globalSQL = "hello!";
-
+//C: /Users/Admin / DocumentsGitHub / vidserver / vidServer / nodeNET / edge / lib / edge
+var edge = require('./nodeNET/edge/lib/edge'); //this uses a custom build for this node version. 
 
 
 var app = require('express');
@@ -17,6 +18,58 @@ var gittest = "hello git    ";
 //  var exp = require('express');
 var cluster = require('cluster');
 
+//youtube 
+var ytdl = require('ytdl-core');
+
+
+///Note dont use try blocks in these 
+
+var ExecuteCommandSync = edge.func(function () {
+    /*
+     async (input) =>{
+    
+string output = "";
+        
+                // create the ProcessStartInfo using "cmd" as the program to be run,
+                // and "/c " as the parameters.
+                // Incidentally, /c tells cmd that we want it to execute the command that follows,
+                // and then exit.
+                System.Diagnostics.ProcessStartInfo procStartInfo =
+                    new System.Diagnostics.ProcessStartInfo("cmd", "/c " + input);
+
+                // The following commands are needed to redirect the standard output.
+                // This means that it will be redirected to the Process.StandardOutput StreamReader.
+                procStartInfo.RedirectStandardOutput = true;
+                procStartInfo.UseShellExecute = false;
+                // Do not create the black window.
+                procStartInfo.CreateNoWindow = true;
+                // Now we create a process, assign its ProcessStartInfo and start it
+                System.Diagnostics.Process proc = new System.Diagnostics.Process();
+                proc.StartInfo = procStartInfo;
+                proc.Start();
+
+                // Get the output into a string
+                string result = proc.StandardOutput.ReadToEnd();
+                output = result;
+                // Display the command output.
+                output  = result; 
+                return result ;
+         
+            return output;
+      }*/
+});
+
+/*
+ ExecuteCommandSync(
+    "node ytdl -o " +
+    "songname" +
+    "www.youtube.com/watch?v=jNQXAC9IVRw"
+    + " audioonly", function(error, result) {
+    if (error) throw error;
+    console.log(result);
+});
+
+*/
 
 
 
@@ -275,13 +328,13 @@ var cluster = require('cluster');
 
                                             } else 
                                             {
-
+                                                
                                                 //index 
-
+                                                var ip = req.connection.remoteAddress.toString();
                                                 fs.readFile("index.html", "utf8", function (err, data) {
                                                     //res.writeHead(200, { 'Content-Type': 'text/html' });
 
-                                                    res.write(data, function (err) {
+                                                    res.write(ip, function (err) {
                                                         res.end();
                                                     });
 
